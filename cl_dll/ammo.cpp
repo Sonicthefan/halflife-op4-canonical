@@ -73,10 +73,14 @@ void WeaponsResource::LoadWeaponSprites(WEAPON* pWeapon)
 {
 	int i, iRes;
 
-	if (ScreenWidth < 640)
-		iRes = 320;
-	else
+	if (gHUD.IsHL25() && ScreenWidth > 2560 && ScreenHeight > 1600)
+		iRes = 2560;
+	else if (gHUD.IsHL25() && ScreenWidth >= 1280 && ScreenHeight > 720)
+		iRes = 1280;
+	else if (ScreenWidth >= 640)
 		iRes = 640;
+	else
+		iRes = 320;
 
 	char sz[256];
 
@@ -323,16 +327,17 @@ bool CHudAmmo::VidInit()
 	// If we've already loaded weapons, let's get new sprites
 	gWR.LoadAllWeaponSprites();
 
-	if (ScreenWidth >= 640)
-	{
-		giABWidth = 20;
-		giABHeight = 4;
-	}
-	else
-	{
-		giABWidth = 10;
-		giABHeight = 2;
-	}
+	int nScale = 1;
+
+	if (gHUD.IsHL25() && ScreenWidth > 2560 && ScreenHeight > 1600)
+		nScale = 4;
+	else if (gHUD.IsHL25() && ScreenWidth >= 1280 && ScreenHeight > 720)
+		nScale = 3;
+	else if (ScreenWidth >= 640)
+		nScale = 2;
+
+	giABWidth = 10 * nScale;
+	giABHeight = 2 * nScale;
 
 	return true;
 }

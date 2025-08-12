@@ -21,6 +21,8 @@
 #include "vgui_TeamFortressViewport.h"
 #include "filesystem_utils.h"
 
+#include "r_ripples.h"
+
 
 extern bool g_iAlive;
 
@@ -1023,6 +1025,7 @@ void CL_UnloadParticleMan();
 void DLLEXPORT HUD_Shutdown()
 {
 	//	RecClShutdown();
+	g_Ripples.ResetRipples();
 
 	ShutdownInput();
 

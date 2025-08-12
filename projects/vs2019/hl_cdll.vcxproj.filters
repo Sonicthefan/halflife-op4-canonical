@@ -63,7 +63,7 @@
     </Filter>
     <Filter Include="Header Files\_hl\dlls\weapons">
       <UniqueIdentifier>{c98d7745-f010-438b-9e1f-b4f217174e1f}</UniqueIdentifier>
-	</Filter>
+    </Filter>
     <Filter Include="Header Files\engine">
       <UniqueIdentifier>{ebcb0f66-49b6-4e55-9a97-f6720cade9ec}</UniqueIdentifier>
     </Filter>
@@ -75,6 +75,9 @@
     </Filter>
     <Filter Include="Source Files\cl_dll\particleman">
       <UniqueIdentifier>{7085339d-2b33-4cdf-846c-0e4c7d33add8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\water_ripples">
+      <UniqueIdentifier>{fd27265f-0808-457b-aad5-cbddde8fd6c8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -381,6 +384,9 @@
     <ClCompile Include="..\..\cl_dll\particleman\CBaseParticle.cpp">
       <Filter>Source Files\cl_dll\particleman</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\cl_dll\r_ripples.cpp">
+      <Filter>Source Files\water_ripples</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\cl_dll\kbutton.h">
@@ -523,7 +529,7 @@
     </ClInclude>
     <ClInclude Include="..\..\dlls\weapons\CPenguin.h">
       <Filter>Header Files\_hl\dlls\weapons</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="..\..\dlls\cdll_dll.h">
       <Filter>Header Files\cl_dll</Filter>
     </ClInclude>
@@ -691,6 +697,12 @@
     </ClInclude>
     <ClInclude Include="..\..\cl_dll\particleman\CBaseParticle.h">
       <Filter>Header Files\cl_dll\particleman</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\cl_dll\warpsin.h">
+      <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\cl_dll\r_ripples.h">
+      <Filter>Header Files\cl_dll</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

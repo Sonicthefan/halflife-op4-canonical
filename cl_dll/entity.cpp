@@ -15,6 +15,9 @@
 #include "Exports.h"
 
 #include "particleman.h"
+
+#include "r_ripples.h"
+
 extern IParticleMan* g_pParticleMan;
 
 void Game_AddObjects();
@@ -32,6 +35,11 @@ HUD_AddEntity
 int DLLEXPORT HUD_AddEntity(int type, struct cl_entity_s* ent, const char* modelname)
 {
 	//	RecClAddEntity(type, ent, modelname);
+
+	if (g_Ripples.AddEntity(ent))
+	{
+		//return false;		// Commented out to let engine call EmitWaterPolys for setting underwater fog color
+	}
 
 	switch (type)
 	{

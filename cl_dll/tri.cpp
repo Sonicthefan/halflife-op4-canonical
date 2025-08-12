@@ -20,6 +20,9 @@
 
 #include "particleman.h"
 #include "tri.h"
+
+#include "r_ripples.h"
+
 extern IParticleMan* g_pParticleMan;
 
 /*
@@ -47,7 +50,7 @@ Render any triangles with transparent rendermode needs here
 void DLLEXPORT HUD_DrawTransparentTriangles()
 {
 	//	RecClDrawTransparentTriangles();
-
+	g_Ripples.RenderWater();
 
 	if (g_pParticleMan)
 		g_pParticleMan->Update();

@@ -30,6 +30,8 @@
 #include "demo_api.h"
 #include "vgui_ScorePanel.h"
 
+#include <string>
+
 hud_player_info_t g_PlayerInfoList[MAX_PLAYERS_HUD + 1];	// player info from the engine
 extra_player_info_t g_PlayerExtraInfo[MAX_PLAYERS_HUD + 1]; // additional player info sent directly to the client dll
 
@@ -437,6 +439,8 @@ void CHud::Init()
 
 	MsgFunc_ResetHUD(0, 0, NULL);
 
+	GetEngineBuildNumber();
+
 #ifdef STEAM_RICH_PRESENCE
 	gEngfuncs.pfnClientCmd("richpresence_gamemode\n"); // reset
 	gEngfuncs.pfnClientCmd("richpresence_update\n");
@@ -493,10 +497,14 @@ void CHud::VidInit()
 	m_hsprLogo = 0;
 	m_hsprCursor = 0;
 
-	if (ScreenWidth < 640)
-		m_iRes = 320;
-	else
+	if (gHUD.IsHL25() && ScreenWidth > 2560 && ScreenHeight > 1600)
+		m_iRes = 2560;
+	else if (gHUD.IsHL25() && ScreenWidth >= 1280 && ScreenHeight > 720)
+		m_iRes = 1280;
+	else if (ScreenWidth >= 640)
 		m_iRes = 640;
+	else
+		m_iRes = 320;
 
 	// Only load this once
 	if (!m_pSpriteList)
@@ -767,6 +775,20 @@ void CHud::AddHudElem(CHudBase* phudelem)
 float CHud::GetSensitivity()
 {
 	return m_flMouseSensitivity;
+}
+
+void CHud::GetEngineBuildNumber()
+{
+	std::string version = gEngfuncs.pfnGetCvarString("sv_version");
+
+	auto lastsep = version.find_last_of(',');
+
+	if (lastsep == std::string::npos)
+		return;
+
+	version.erase(0, lastsep + 1);
+
+	m_iEngineBuildNumber = std::stol(version);
 }
 
 void CHud::setNightVisionState(bool state)

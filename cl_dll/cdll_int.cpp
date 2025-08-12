@@ -38,6 +38,8 @@
 #include "vgui_TeamFortressViewport.h"
 #include "filesystem_utils.h"
 
+#include "r_ripples.h"
+
 cl_enginefunc_t gEngfuncs;
 CHud gHUD;
 TeamFortressViewport* gViewPort = NULL;
@@ -177,6 +179,8 @@ int DLLEXPORT HUD_VidInit()
 
 	VGui_Startup();
 
+	g_Ripples.ResetRipples();
+
 	return 1;
 }
 
@@ -197,6 +201,8 @@ void DLLEXPORT HUD_Init()
 
 	gHUD.Init();
 	Scheme_Init();
+
+	g_Ripples.InitRipples();
 }
 
 
@@ -214,6 +220,7 @@ int DLLEXPORT HUD_Redraw(float time, int intermission)
 	//	RecClHudRedraw(time, intermission);
 
 	gHUD.Redraw(time, 0 != intermission);
+	g_Ripples.AnimateRipples();
 
 	return 1;
 }
