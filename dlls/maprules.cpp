@@ -34,6 +34,7 @@ class CRuleEntity : public CBaseEntity
 {
 public:
 	void Spawn() override;
+	int ObjectCaps() override { return CRuleEntity::ObjectCaps() & ~FCAP_ACROSS_TRANSITION; }
 	bool KeyValue(KeyValueData* pkvd) override;
 	bool Save(CSave& save) override;
 	bool Restore(CRestore& restore) override;
@@ -172,7 +173,7 @@ void CGameScore::Use(CBaseEntity* pActivator, CBaseEntity* pCaller, USE_TYPE use
 		return;
 
 	// Only players can use this
-	if (pActivator->IsPlayer())
+	if (pActivator && pActivator->IsPlayer())
 	{
 		if (AwardToTeam())
 		{

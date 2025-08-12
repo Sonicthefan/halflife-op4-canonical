@@ -326,7 +326,7 @@ int CZombieBarney::IgnoreConditions()
 {
 	int iIgnore = CBaseMonster::IgnoreConditions();
 
-	if ((m_Activity == ACT_MELEE_ATTACK1) || (m_Activity == ACT_MELEE_ATTACK1))
+	if (m_Activity == ACT_MELEE_ATTACK1)
 	{
 #if 0
 		if (pev->health < 20)
