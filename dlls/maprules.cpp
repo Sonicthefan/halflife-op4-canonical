@@ -34,7 +34,6 @@ class CRuleEntity : public CBaseEntity
 {
 public:
 	void Spawn() override;
-	int ObjectCaps() override { return CRuleEntity::ObjectCaps() & ~FCAP_ACROSS_TRANSITION; }
 	bool KeyValue(KeyValueData* pkvd) override;
 	bool Save(CSave& save) override;
 	bool Restore(CRestore& restore) override;
@@ -110,6 +109,7 @@ class CRuleBrushEntity : public CRuleEntity
 {
 public:
 	void Spawn() override;
+	int ObjectCaps() override { return CRuleEntity::ObjectCaps() & ~FCAP_ACROSS_TRANSITION; }
 
 private:
 };
