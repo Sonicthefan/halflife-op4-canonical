@@ -755,15 +755,6 @@ public:
 		g = 255;
 		b = 255;
 	}
-	// Added to prevent crashing in build 8684 and below
-	inline bool IsHL25()
-	{
-		return m_iEngineBuildNumber > 8684;
-	}
-
-private:
-	void GetEngineBuildNumber();
-	int m_iEngineBuildNumber;
 };
 
 extern CHud gHUD;
